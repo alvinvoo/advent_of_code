@@ -1,0 +1,23 @@
+rules {"type": [44..314, 338..965], "arrival station": [31..228, 240..971], "price": [38..591, 601..951], "zone": [38..542, 550..966], "departure platform": [46..789, 806..968], "arrival track": [49..488, 499..965], "row": [44..403, 419..963], "arrival location": [47..84, 95..954], "wagon": [30..111, 133..971], "train": [47..157, 178..955], "class": [33..364, 381..960], "duration": [35..510, 522..952], "arrival platform": [48..841, 853..965], "departure location": [45..423, 444..951], "departure track": [46..58, 70..951], "route": [41..267, 285..963], "departure time": [42..884, 903..963], "departure station": [36..742, 752..957], "departure date": [35..100, 108..975], "seat": [41..616, 634..957]}
+col size 20
+row size 190
+col 0 ===>s ["departure date", "zone", "departure station", "wagon", "seat", "type", "row", "route", "arrival platform", "duration", "departure location", "departure time", "train", "departure track", "arrival station", "arrival track", "price", "class", "departure platform"]
+col 1 ===>s ["arrival track", "row", "duration", "price"]
+col 2 ===>s ["departure station", "duration", "row", "arrival track", "departure location", "departure track", "price", "departure time", "departure platform", "departure date"]
+col 3 ===>s ["departure date", "zone", "arrival station", "duration", "arrival platform", "type", "departure time", "departure track", "row", "arrival track", "seat", "departure station", "route", "departure location", "price", "departure platform"]
+col 4 ===>s ["price"]
+col 5 ===>s ["departure track", "departure platform", "arrival track", "row", "price", "duration"]
+col 6 ===>s ["departure time", "price", "departure station", "route", "arrival track", "departure location", "row", "arrival platform", "departure platform", "zone", "departure date", "departure track", "duration"]
+col 7 ===>s ["row", "departure track", "arrival track", "route", "type", "departure date", "departure station", "departure platform", "wagon", "duration", "departure location", "arrival station", "seat", "price", "zone", "departure time", "arrival platform"]
+col 8 ===>s ["price", "departure track", "row", "departure date", "departure station", "arrival track", "duration", "departure platform"]
+col 9 ===>s ["duration", "zone", "arrival track", "departure station", "arrival location", "arrival platform", "class", "departure platform", "departure track", "departure time", "type", "train", "wagon", "seat", "departure location", "price", "row", "route", "arrival station", "departure date"]
+col 10 ===>s ["price", "departure date", "departure station", "row", "arrival track", "duration", "departure location", "departure track", "departure platform"]
+col 11 ===>s ["row", "duration", "departure platform", "price", "arrival station", "departure station", "departure time", "departure date", "departure track", "route", "zone", "arrival track", "arrival platform", "departure location"]
+col 12 ===>s ["arrival platform", "departure platform", "departure station", "departure location", "departure date", "route", "row", "departure track", "duration", "price", "arrival track", "departure time"]
+col 13 ===>s ["arrival track", "duration", "price"]
+col 14 ===>s ["departure platform", "duration", "price", "departure track", "departure date", "row", "arrival track"]
+col 15 ===>s ["price", "duration"]
+col 16 ===>s ["train", "arrival station", "zone", "departure location", "departure date", "arrival track", "departure platform", "wagon", "price", "departure track", "departure time", "arrival platform", "seat", "type", "departure station", "row", "route", "duration"]
+col 17 ===>s ["departure station", "departure track", "departure time", "departure location", "price", "departure platform", "arrival track", "duration", "departure date", "row", "arrival platform"]
+col 18 ===>s ["duration", "departure platform", "arrival track", "price", "row"]
+col 19 ===>s ["departure date", "seat", "departure station", "duration", "route", "price", "departure location", "departure platform", "arrival platform", "arrival station", "departure time", "departure track", "row", "arrival track", "zone"]

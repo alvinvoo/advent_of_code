@@ -1,0 +1,24 @@
+["class1"]
+["row1"]
+["departure time1"]
+["type1"]
+["price1"]
+["departure track1"]
+["zone1"]
+["wagon1"]
+["departure station1"]
+["arrival location1"]
+["departure location1"]
+["arrival station1"]
+["route1"]
+["arrival track1"]
+["departure date1"]
+["duration1"]
+["train1"]
+["arrival platform1"]
+["departure platform1"]
+["seat1"]
+
+109,199,223,179,97,227,197,151,73,79,211,181,71,139,53,149,137,191,83,193
+
+223*227*73*211*53*83 = 3429967441937

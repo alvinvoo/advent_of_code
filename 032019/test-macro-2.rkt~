@@ -1,0 +1,18 @@
+#lang racket
+
+> (require (for-syntax racket/string racket/syntax))
+> (define-syntax (hyphen-define* stx)
+    (syntax-case stx ()
+      [(_ (names ...) (args ...) body0 body ...)
+       (let ([name-stxs (syntax->list #'(names ...))])
+         (with-syntax ([name (datum->syntax (car name-stxs)
+                                            (string->symbol
+                                             (string-join (for/list ([name-stx name-stxs])
+                                                            (symbol->string
+                                                             (syntax-e name-stx)))
+                                                          "-")))])
+           #'(define (name args ...)
+               body0 body ...)))]))
+> (hyphen-define* (foo bar baz) (v) (* 2 v))
+> (foo-bar-baz 50)
+100
