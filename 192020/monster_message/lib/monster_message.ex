@@ -26,8 +26,9 @@ defmodule MonsterMessage do
     else
       if Regex.match?(~r/\|/, value) do
         [left_tree, right_tree] = String.split(value, "|", trim: true)
-        # seems premature to split it here first..
+        # seems premature to split it here and process first..
         # all the | are OR while space " " are AND
+        # need to call recurse_number for another recursion
         left_nodes = String.split(String.trim(left_tree), " ", trim: true)
         right_nodes = String.split(String.trim(right_tree), " ", trim: true)
 
