@@ -12,12 +12,6 @@ defmodule MonsterMessage do
       :world
 
   """
-  def split_on_colon(item, acc) do
-    [node_index, next_node_combi] = String.split(item, ":", trim: true)
-
-    Map.put(acc, node_index, String.trim(next_node_combi))
-  end
-
   def recurse_number(node_map, value) do
     IO.puts inspect " value " <> inspect value
     cond do
@@ -30,45 +24,24 @@ defmodule MonsterMessage do
         left_message = recurse_number(node_map, left_tree)
         right_message = recurse_number(node_map, right_tree)
 
-        # left_nodes = String.split(String.trim(left_tree), " ", trim: true)
-        # right_nodes = String.split(String.trim(right_tree), " ", trim: true)
+        # IO.puts "L msg " <> inspect left_message
 
-        # left_message = Enum.reduce(left_nodes, [], fn node, acc ->
-        #   acc ++ [recurse_number(node_map, node)]
-        # end)
-
-        # left_message = if Enum.all?(left_message, fn x -> x == "a" || x == "b" end) do
-        #   Enum.join(left_message)
-        # else
-        #   left_message
-        # end
-        IO.puts "L msg " <> inspect left_message
-
-        # right_message = Enum.reduce(right_nodes, [], fn node, acc ->
-        #   acc ++ [recurse_number(node_map, node)]
-        # end)
-
-        # right_message = if Enum.all?(right_message, fn x -> x == "a" || x == "b" end) do
-        #   Enum.join(right_message)
-        # else
-        #   right_message
-        # end
-        IO.puts "R msg " <> inspect right_message
+        # IO.puts "R msg " <> inspect right_message
 
         [left_message, right_message]
       Regex.match?(~r/\s/, value) ->
         nodes = String.split(String.trim(value), " ", trim: true)
-        IO.puts inspect "Nodes " <> inspect nodes
+        # IO.puts inspect "Nodes " <> inspect nodes
         Enum.reduce(nodes, [] , fn node, acc ->
           temp = [recurse_number(node_map, node)]
-          IO.puts "ACC & #{inspect acc} #{inspect temp}"
+          # IO.puts "ACC & #{inspect acc} #{inspect temp}"
           # here needs to & (join / permutate)
           p = unless Enum.empty?(acc) do
             permute_list(acc, temp)
           else
             acc ++ temp
           end
-          IO.puts "ACC ret #{inspect p}"
+          # IO.puts "ACC ret #{inspect p}"
           p
         end)
       value=="a" || value=="b" ->
@@ -91,19 +64,26 @@ defmodule MonsterMessage do
     end)
   end
 
-  def permute_list2(list1, list2) do
-    Enum.reduce(list1, [], fn item, acc ->
-      item_list = for r <- list2 do
-        item <> r
-      end
-      acc ++ item_list
-    end)
+  defp split_on_colon(item, acc) do
+    [node_index, next_node_combi] = String.split(item, ":", trim: true)
+
+    Map.put(acc, node_index, String.trim(next_node_combi))
   end
 
   def main do
-    node_map = File.stream!("input_t") |> Enum.reduce(%{}, &split_on_colon/2)
+    node_map = File.stream!("input_1") |> Enum.reduce(%{}, &split_on_colon/2)
 
-   recurse_number(node_map, "0")
+    final_list = recurse_number(node_map, "0")
+
+    msg_list = File.stream!("input_msg") |> Enum.reduce([], fn item, acc ->
+     acc ++ [String.trim(item)]
+    end)
+
+    # IO.puts inspect final_list
+    # IO.puts inspect msg_list
+
+    MapSet.intersection(MapSet.new(final_list), MapSet.new(msg_list))
+    |> MapSet.size
 
   end
 end
