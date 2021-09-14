@@ -18,60 +18,73 @@ defmodule MonsterMessage do
     Map.put(acc, node_index, String.trim(next_node_combi))
   end
 
-  def recurse_number(node_map, node_index) do
-    value = node_map[node_index]
-    IO.puts inspect "node index " <> node_index <> " value " <> value
-    if value=="a" || value=="b" do
-      value
-    else
-      if Regex.match?(~r/\|/, value) do
+  def recurse_number(node_map, value) do
+    IO.puts inspect " value " <> inspect value
+    cond do
+      Regex.match?(~r/\|/, value) ->
         [left_tree, right_tree] = String.split(value, "|", trim: true)
         # seems premature to split it here and process first..
         # all the | are OR while space " " are AND
         # need to call recurse_number for another recursion
-        left_nodes = String.split(String.trim(left_tree), " ", trim: true)
-        right_nodes = String.split(String.trim(right_tree), " ", trim: true)
 
-        left_message = Enum.reduce(left_nodes, [], fn node, acc ->
-          acc ++ [recurse_number(node_map, node)]
-        end)
+        left_message = recurse_number(node_map, left_tree)
+        right_message = recurse_number(node_map, right_tree)
 
-        left_message = if Enum.all?(left_message, fn x -> x == "a" || x == "b" end) do
-          Enum.join(left_message)
-        else
-          left_message
-        end
+        # left_nodes = String.split(String.trim(left_tree), " ", trim: true)
+        # right_nodes = String.split(String.trim(right_tree), " ", trim: true)
+
+        # left_message = Enum.reduce(left_nodes, [], fn node, acc ->
+        #   acc ++ [recurse_number(node_map, node)]
+        # end)
+
+        # left_message = if Enum.all?(left_message, fn x -> x == "a" || x == "b" end) do
+        #   Enum.join(left_message)
+        # else
+        #   left_message
+        # end
         IO.puts "L msg " <> inspect left_message
 
-        right_message = Enum.reduce(right_nodes, [], fn node, acc ->
-          acc ++ [recurse_number(node_map, node)]
-        end)
+        # right_message = Enum.reduce(right_nodes, [], fn node, acc ->
+        #   acc ++ [recurse_number(node_map, node)]
+        # end)
 
-        right_message = if Enum.all?(right_message, fn x -> x == "a" || x == "b" end) do
-          Enum.join(right_message)
-        else
-          right_message
-        end
+        # right_message = if Enum.all?(right_message, fn x -> x == "a" || x == "b" end) do
+        #   Enum.join(right_message)
+        # else
+        #   right_message
+        # end
         IO.puts "R msg " <> inspect right_message
 
         [left_message, right_message]
-      else
+      Regex.match?(~r/\s/, value) ->
         nodes = String.split(String.trim(value), " ", trim: true)
         IO.puts inspect "Nodes " <> inspect nodes
         Enum.reduce(nodes, [] , fn node, acc ->
           temp = [recurse_number(node_map, node)]
           IO.puts "ACC & #{inspect acc} #{inspect temp}"
-          acc ++ temp
+          # here needs to & (join / permutate)
+          p = unless Enum.empty?(acc) do
+            permute_list(acc, temp)
+          else
+            acc ++ temp
+          end
+          IO.puts "ACC ret #{inspect p}"
+          p
         end)
+      value=="a" || value=="b" ->
+        value
+      true ->
+        recurse_number(node_map, node_map[value])
       end
-    end
   end
 
   # && function
   # given 2 lists, return the whole permutation range
   def permute_list(list1, list2) do
-    Enum.reduce(list1, [], fn item, acc ->
-      item_list = for r <- list2 do
+    l1 = List.flatten(list1)
+    l2 = List.flatten(list2)
+    Enum.reduce(l1, [], fn item, acc ->
+      item_list = for r <- l2 do
         item <> r
       end
       acc ++ item_list
