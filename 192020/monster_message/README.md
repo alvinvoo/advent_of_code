@@ -19,6 +19,9 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/monster_message](https://hexdocs.pm/monster_message).
 
+SO NOW, needs to work backward.. since rule 8 and 11 are infinite loops
+needs to start FROM the given message list (instead of the rule)
+833cb6d commit: finished part 1, answer is 250
 0483423 commit: realized that should passin the value instead. another realization is to flatten the list! (remove outer list structure)
                    --> IT WORK! Can print out ["aaaabb", "aaabab", "abbabb", "abbbab", "aabaab", "aabbbb", "abaaab", "ababbb"]
 1b87b58 commit: need to call itself for another layer of recursion

@@ -13,7 +13,7 @@ defmodule MonsterMessage do
 
   """
   def recurse_number(node_map, value) do
-    IO.puts inspect " value " <> inspect value
+    #IO.puts inspect " value " <> inspect value
     cond do
       Regex.match?(~r/\|/, value) ->
         [left_tree, right_tree] = String.split(value, "|", trim: true)
@@ -41,7 +41,7 @@ defmodule MonsterMessage do
           else
             acc ++ temp
           end
-          # IO.puts "ACC ret #{inspect p}"
+          IO.puts "ACC ret #{inspect p}"
           p
         end)
       value=="a" || value=="b" ->
@@ -64,22 +64,30 @@ defmodule MonsterMessage do
     end)
   end
 
-  defp split_on_colon(item, acc) do
+  def split_on_colon(item, acc) do
     [node_index, next_node_combi] = String.split(item, ":", trim: true)
 
     Map.put(acc, node_index, String.trim(next_node_combi))
   end
 
   def main do
-    node_map = File.stream!("input_1") |> Enum.reduce(%{}, &split_on_colon/2)
+    node_map = File.stream!("input_2_t_recurse") |> Enum.reduce(%{}, &split_on_colon/2)
 
     final_list = recurse_number(node_map, "0")
 
-    msg_list = File.stream!("input_msg") |> Enum.reduce([], fn item, acc ->
+    msg_list = File.stream!("input_2_msg") |> Enum.reduce([], fn item, acc ->
      acc ++ [String.trim(item)]
     end)
 
-    # IO.puts inspect final_list
+     IO.puts inspect final_list
+     IO.puts inspect Enum.count(final_list)
+
+     min = Enum.min(final_list, fn a, b -> String.length(a) <= String.length(b) end)
+     max = Enum.max(final_list, fn a, b -> String.length(a) >= String.length(b) end)
+     IO.puts min
+     IO.puts String.length(min)
+     IO.puts max
+     IO.puts String.length(max)
     # IO.puts inspect msg_list
 
     MapSet.intersection(MapSet.new(final_list), MapSet.new(msg_list))
