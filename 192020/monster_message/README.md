@@ -19,6 +19,10 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/monster_message](https://hexdocs.pm/monster_message).
 
+
+5d6b81a commit: part 2: 8 will keep recursing itself and not able to move further
+  -> the problem is now, becoz its a recursive function, it cannot reconcile (backwards) to produce just _part_ of the answer
+  
 SO NOW, needs to work backward.. since rule 8 and 11 are infinite loops
 needs to start FROM the given message list (instead of the rule)
 833cb6d commit: finished part 1, answer is 250
