@@ -20,6 +20,8 @@ and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/monster_message](https://hexdocs.pm/monster_message).
 
 
+
+0037e86 commit: example analysis successful. Need to analyse rules of 8 and 11 and the individual chunk parts. Look at arithmetic calculation
 5d6b81a commit: part 2: 8 will keep recursing itself and not able to move further
   -> the problem is now, becoz its a recursive function, it cannot reconcile (backwards) to produce just _part_ of the answer
   

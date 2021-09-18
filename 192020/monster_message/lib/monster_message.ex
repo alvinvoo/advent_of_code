@@ -96,51 +96,48 @@ defmodule MonsterMessage do
 
   end
 
+  # below is for part 2
   def part2 do
+    sa = small_fun_export_array()
 
-    #node_map = File.stream!("input_2_t_recurse") |> Enum.reduce(%{}, &split_on_colon/2)
-
-    msg_list = File.stream!("input_2_msg") |> Enum.reduce([], fn item, acc ->
+    msg_list = File.stream!("input_msg") |> Enum.reduce([], fn item, acc ->
      acc ++ [String.trim(item)]
     end)
 
     r = for msg <- msg_list do
       spt_str = split_string(msg)
-      IO.puts "checking #{msg} #{inspect spt_str}"
+      #IO.puts "checking #{msg} #{inspect spt_str}"
 
       result = Enum.reduce(spt_str, false, fn chunk_list, acc ->
-        acc || msg_check(chunk_list)
+        acc || msg_check(sa, chunk_list)
       end)
-      IO.puts "result for #{msg} is #{result} \n\n"
+      #IO.puts "result for #{msg} is #{result} \n\n"
       result
     end
 
     Enum.count(r, &(&1==true))
   end
 
-  def msg_check({heads, tail}) do
+  def small_fun_export_array do
+    node_map = File.stream!("input_1") |> Enum.reduce(%{}, &split_on_colon/2)
 
+    part_42 = List.flatten(recurse_number(node_map, "42"))
+    part_31 = List.flatten(recurse_number(node_map, "31"))
+    {part_42, part_31}
+  end
+
+  def msg_check({part_42, part_31}, {heads, tail}) do
+
+    # for example
     # part_31 = [
-    #   ["bbaba", "bbbaa", "babab", "babaa", "babba", "baaba", "baaab"],
-    #   ["ababb", "abaab", "abbab", "abaaa", "abbaa", "abbba", "aabab", "aabaa", "aabba"]
+    #   "bbaba", "bbbaa", "babab", "babaa", "babba", "baaba", "baaab",
+    #   "ababb", "abaab", "abbab", "abaaa", "abbaa", "abbba", "aabab", "aabaa", "aabba"
     # ]
-    part_31 = [
-      "bbaba", "bbbaa", "babab", "babaa", "babba", "baaba", "baaab",
-      "ababb", "abaab", "abbab", "abaaa", "abbaa", "abbba", "aabab", "aabaa", "aabba"
-    ]
-    # part_42 = [
-    #   ["babbb", "baabb", "bbaab", "bbabb", "bbbab", "bbbbb", "abbbb", "aabbb", "aaaab", "aaabb"],
-    #   ["aaaba", "ababa", "bbbba", "aaaaa", "baaaa", "bbaaa"]
-    # ]
-    part_42 = [
-      "babbb", "baabb", "bbaab", "bbabb", "bbbab", "bbbbb", "abbbb", "aabbb", "aaaab", "aaabb",
-      "aaaba", "ababa", "bbbba", "aaaaa", "baaaa", "bbaaa"
-    ]
 
-    #the 3rd case
-    #babbb baabb bbbab bbbbb aabaa abaaa
-    # 4th case
-    #aaabb bbbba aaaba ababa ababa bbaba aabba babab abaaa
+    # part_42 = [
+    #   "babbb", "baabb", "bbaab", "bbabb", "bbbab", "bbbbb", "abbbb", "aabbb", "aaaab", "aaabb",
+    #   "aaaba", "ababa", "bbbba", "aaaaa", "baaaa", "bbaaa"
+    # ]
 
     #h_m = MapSet.intersection(MapSet.new(part_42), MapSet.new(heads))
     #IO.puts "heads match #{inspect h_m}"
@@ -159,13 +156,19 @@ defmodule MonsterMessage do
 
   def split_string(str) do
     whole_list = String.graphemes(str)
-    |> Enum.chunk_every(5)
+    |> Enum.chunk_every(8)
     |> Enum.map(&Enum.join/1)
 
     list_count = Enum.count(whole_list)
     p1 = {Enum.slice(whole_list, 0..(list_count-2)), Enum.slice(whole_list, (list_count-1)..list_count)}
 
     cond do
+      list_count >= 11 ->
+        p2 = {Enum.slice(whole_list, 0..(list_count-3)), Enum.slice(whole_list, (list_count-2)..list_count)}
+        p3 = {Enum.slice(whole_list, 0..(list_count-4)), Enum.slice(whole_list, (list_count-3)..list_count)}
+        p4 = {Enum.slice(whole_list, 0..(list_count-5)), Enum.slice(whole_list, (list_count-4)..list_count)}
+        p5 = {Enum.slice(whole_list, 0..(list_count-6)), Enum.slice(whole_list, (list_count-5)..list_count)}
+        [p1, p2, p3, p4, p5]
       list_count >= 9 ->
         p2 = {Enum.slice(whole_list, 0..(list_count-3)), Enum.slice(whole_list, (list_count-2)..list_count)}
         p3 = {Enum.slice(whole_list, 0..(list_count-4)), Enum.slice(whole_list, (list_count-3)..list_count)}
