@@ -21,15 +21,15 @@ be found at [https://hexdocs.pm/monster_message](https://hexdocs.pm/monster_mess
 
 
 
-0037e86 commit: example analysis successful. Need to analyse rules of 8 and 11 and the individual chunk parts. Look at arithmetic calculation
-5d6b81a commit: part 2: 8 will keep recursing itself and not able to move further
-  -> the problem is now, becoz its a recursive function, it cannot reconcile (backwards) to produce just _part_ of the answer
-  
-SO NOW, needs to work backward.. since rule 8 and 11 are infinite loops
-needs to start FROM the given message list (instead of the rule)
-833cb6d commit: finished part 1, answer is 250
-0483423 commit: realized that should passin the value instead. another realization is to flatten the list! (remove outer list structure)
-                   --> IT WORK! Can print out ["aaaabb", "aaabab", "abbabb", "abbbab", "aabaab", "aabbbb", "abaaab", "ababbb"]
-1b87b58 commit: need to call itself for another layer of recursion
-37e1c82 commit: realized there are 3 components : | and space, and there's premature splitting at line 29
-d98cf11 commit: main recurse_number function; permutate_list function; but still dunno how to join back the list of lists
+0037e86 commit: example analysis successful. Need to analyse rules of 8 and 11 and the individual chunk parts. Look at arithmetic calculation  
+5d6b81a commit: part 2: 8 will keep recursing itself and not able to move further  
+  -> the problem is now, becoz its a recursive function, it cannot reconcile (backwards) to produce just _part_ of the answer  
+    
+SO NOW, needs to work backward.. since rule 8 and 11 are infinite loops  
+needs to start FROM the given message list (instead of the rule)  
+833cb6d commit: finished part 1, answer is 250  
+0483423 commit: realized that should passin the value instead. another realization is to flatten the list! (remove outer list structure)  
+                   --> IT WORK! Can print out ["aaaabb", "aaabab", "abbabb", "abbbab", "aabaab", "aabbbb", "abaaab", "ababbb"]  
+1b87b58 commit: need to call itself for another layer of recursion  
+37e1c82 commit: realized there are 3 components : | and space, and there's premature splitting at line 29  
+d98cf11 commit: main recurse_number function; permutate_list function; but still dunno how to join back the list of lists  
