@@ -1,0 +1,46 @@
+
+  %JurassicJigsaw.Tile{                                               
+    index: 3079,                                                      
+    side_score: 0,                                                    
+    sides: ["#.#.#####.", "..#.###...", "#..##.#...", ".#....#..."]   
+  },                                                                  
+  %JurassicJigsaw.Tile{                                               
+    index: 2729,                                                      
+    side_score: 0,                                                    
+    sides: ["...#.#.#.#", "#.##...##.", ".#....####", "#..#......"]   
+  },                                                                  
+  %JurassicJigsaw.Tile{                                               
+    index: 2971,                                                      
+    side_score: 0,                                                    
+    sides: ["..#.#....#", "...#.#.#.#", ".###..#...", "#...##.#.#"]   
+  },                                                                  
+  %JurassicJigsaw.Tile{                                               
+    index: 2473,                                                      
+    side_score: 0,                                                    
+    sides: ["#....####.", "..###.#.#.", "####...##.", "...###.#.."]   
+  },                                                                  
+  %JurassicJigsaw.Tile{                                               
+    index: 1489,                                                      
+    side_score: 0,                                                    
+    sides: ["##.#.#....", "###.##.#..", "#...##.#.#", ".....#..#."]   
+  },                                                                  
+  %JurassicJigsaw.Tile{                                               
+    index: 1427,                                                      
+    side_score: 0,                                                    
+    sides: ["###.##.#..", "..##.#..#.", "#..#......", "..###.#.#."]   
+  },                                                                  
+  %JurassicJigsaw.Tile{
+    index: 1171,
+    side_score: 0,
+    sides: ["####...##.", ".....##...", "###....##.", ".#..#....."]
+  },
+  %JurassicJigsaw.Tile{
+    index: 1951,
+    side_score: 0,
+    sides: ["#.##...##.", "#...##.#..", "##.#..#..#", ".#####..#."]
+  },
+  %JurassicJigsaw.Tile{
+    index: 2311,
+    side_score: 0,
+    sides: ["..##.#..#.", "..###..###", ".#####..#.", "...#.##..#"]
+  }
